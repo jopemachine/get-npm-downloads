@@ -1,4 +1,4 @@
-interface NPMDownloadItem {
+interface NPMDownloadInfo {
   downloads: number;
   start: string;
   end: string;
@@ -13,4 +13,4 @@ export default async function ({
   period: string;
   userId?: string;
   repo?: string;
-}): NPMDownloadItem[];
+}): NPMDownloadInfo[];

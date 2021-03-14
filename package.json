@@ -1,8 +1,8 @@
 {
-  "name": "npm-downloads",
+  "name": "npm-download-counter",
   "version": "0.0.1",
   "bin": {
-    "npm-downloads": "./cli.js"
+    "npm-download-counter": "./cli.js"
   },
   "description": "Get npm download info in json format",
   "main": "index.js",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jopemachine/npm-downloads.git"
+    "url": "git+https://github.com/jopemachine/npm-download-counter.git"
   },
   "author": "jopemachine",
   "license": "MIT",
