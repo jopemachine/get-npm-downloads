@@ -1,6 +1,9 @@
 const NpmApi = require('npm-api');
 const axios = require('axios');
 const { getToday } = require('./utils');
+const { Worker } = require('worker_threads');
+const path = require('path');
+
 let npm = new NpmApi();
 
 const url = (period, repository) =>
@@ -46,11 +49,35 @@ module.exports = async ({ userId, period, repo: repoToView }) => {
   const maintainer = npm.maintainer(userId);
   const repos = await maintainer.repos();
   const result = [];
+  const workers = new Set();
 
-  for await (const repo of repos) {
-    const downloadInfos = await axios.get(url(period, repo));
-    result.push(downloadInfos.data);
+  for (const repo of repos) {
+    const worker = new Worker(path.join(`${__dirname}`, 'downloadWork.js'));
+    workers.add(worker);
+    worker.postMessage({
+      url: url(period, repo)
+    });
+
+    worker.on('message', ({ data, errorMsg }) => {
+      if (data) {
+        result.push(data);
+      } else if (errorMsg) {
+        throw new Error(errorMsg);
+      }
+      workers.delete(worker);
+    });
   }
 
-  return result;
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    if (workers.size === 0) {
+      return result;
+    }
+    // yield Execution Order to other workers
+    await sleep(1);
+  }
 };
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}

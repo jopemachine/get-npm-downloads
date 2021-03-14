@@ -1,6 +1,6 @@
 {
   "name": "npm-download-counter",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "bin": {
     "npm-download-counter": "./cli.js"
   },

@@ -44,5 +44,9 @@ const cli = meow(
     period: cli.input[1],
   });
 
+  data.sort((a, b) => {
+    return a.downloads > b.downloads ? -1 : a.downloads < b.downloads ? 1 : 0;
+  });
+
   console.log(data);
 }) ();
