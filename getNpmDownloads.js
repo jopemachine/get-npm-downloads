@@ -3,8 +3,8 @@ const axios = require('axios');
 const { getToday } = require('./utils');
 let npm = new NpmApi();
 
-const url = (period, package) =>
-  `https://api.npmjs.org/downloads/point/${period}/${package}`;
+const url = (period, repository) =>
+  `https://api.npmjs.org/downloads/point/${period}/${repository}`;
 
 module.exports = async ({ userId, period, repo: repoToView }) => {
   if (!userId && !repoToView) {

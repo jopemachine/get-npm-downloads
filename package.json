@@ -4,7 +4,7 @@
   "bin": {
     "npm-downloads": "./cli.js"
   },
-  "description": "Displays npm download in json format",
+  "description": "Get npm download info in json format",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
