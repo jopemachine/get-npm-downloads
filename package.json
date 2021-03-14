@@ -1,0 +1,35 @@
+{
+  "name": "npm-downloads",
+  "version": "0.0.1",
+  "bin": {
+    "npm-downloads": "./cli.js"
+  },
+  "description": "Displays npm download in json format",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jopemachine/npm-downloads.git"
+  },
+  "author": "jopemachine",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jopemachine/my-npm-stats/issues"
+  },
+  "homepage": "https://github.com/jopemachine/my-npm-stats#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "meow": "^9.0.0",
+    "npm-api": "^1.0.1"
+  },
+  "keywords": [
+    "npm",
+    "stat",
+    "downloads"
+  ],
+  "devDependencies": {
+    "eslint": "^7.22.0"
+  }
+}
