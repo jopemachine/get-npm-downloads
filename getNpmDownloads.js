@@ -48,7 +48,6 @@ module.exports = async ({ userId, period, repo: repoToView }) => {
   const result = [];
 
   for await (const repo of repos) {
-    if (repoToView && repo !== repoToView) continue;
     const downloadInfos = await axios.get(url(period, repo));
     result.push(downloadInfos.data);
   }
