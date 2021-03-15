@@ -3,9 +3,15 @@ const axios = require('axios');
 
 if (!isMainThread) {
   parentPort.on('message', async ({ url }) => {
-    parentPort.postMessage({
-      data: (await axios.get(url)).data
-    });
+    try {
+      const data = (await axios.get(url)).data;
+      parentPort.postMessage({ data });
+    } catch (e) {
+      // url is wrong or too new package
+      if (e.response.status === 404) {
+        parentPort.postMessage({ data: undefined });
+      }
+    }
     parentPort.close();
   });
 }
