@@ -8,8 +8,10 @@ if (!isMainThread) {
       parentPort.postMessage({ data });
     } catch (e) {
       // url is wrong or too new package
-      if (e.response.status === 404) {
+      if (e.response && e.response.status === 404) {
         parentPort.postMessage({ data: undefined });
+      } else {
+        console.error(e);
       }
     }
     parentPort.close();

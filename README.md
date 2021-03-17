@@ -6,6 +6,7 @@ Displays npm download in json format
 
 ```js
 const getNpmDownloads = require('npm-download-counter');
+
 const datas = getNpmDownloads({
   userId,
   repo,
