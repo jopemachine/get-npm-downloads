@@ -1,34 +1,41 @@
 {
-  "name": "npm-download-counter",
-  "version": "0.0.4",
+  "name": "download-stats-cli",
+  "version": "0.0.1",
   "bin": {
-    "npm-download-counter": "./cli.js"
+    "download-stats-cli": "./cli.js"
   },
-  "description": "Get npm download info in json format",
+  "description": "Display npm download in console (also include lib)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "local-install": "npm i -g ./"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "files": [
+    "index.d.ts",
+    "*.js"
+  ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jopemachine/npm-download-counter.git"
+    "url": "git+https://github.com/jopemachine/download-stats-cli.git"
   },
   "author": "jopemachine",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jopemachine/my-npm-stats/issues"
+    "url": "https://github.com/jopemachine/download-stats-cli/issues"
   },
-  "homepage": "https://github.com/jopemachine/my-npm-stats#readme",
+  "homepage": "https://github.com/jopemachine/download-stats-cli#readme",
   "dependencies": {
     "axios": "^0.21.1",
+    "boxen": "^5.0.1",
+    "chalk": "^4.1.1",
     "meow": "^9.0.0",
-    "npm-api": "^1.0.1"
+    "npm-api": "^1.0.1",
+    "ora": "^5.4.1"
   },
   "keywords": [
     "npm",
     "stat",
-    "downloads"
+    "downloads",
+    "cli"
   ],
   "devDependencies": {
     "eslint": "^7.22.0"

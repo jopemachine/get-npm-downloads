@@ -1,11 +1,15 @@
-## npm-download-counter
+## download-stats-cli
 
-Displays npm download in json format
+Display npm download in console (also include lib)
+
+Using worker_threads to boost fetch speed.
+
+![](./demo.png)
 
 ### Usage
 
 ```js
-const getNpmDownloads = require('npm-download-counter');
+const getNpmDownloads = require('download-stats-cli');
 
 const datas = getNpmDownloads({
   userId,
@@ -18,16 +22,16 @@ const datas = getNpmDownloads({
 
 ```
   Usage
-      $ npm-download-counter [repository_name || #user_name] period_option
+      $ download-stats-cli [repository_name || #user_name] period_option
 
   Examples
-      $ npm-download-counter repository_name today
-      $ npm-download-counter repository_name last-day
-      $ npm-download-counter repository_name day
-      $ npm-download-counter repository_name last-week
-      $ npm-download-counter '#user_name' w
-      $ npm-download-counter '#user_name' last-month
-      $ npm-download-counter '#user_name' 2014-01-01:2014-01-31
-      $ npm-download-counter '#user_name' w
-      $ npm-download-counter '#user_name' t
+      $ download-stats-cli repository_name today
+      $ download-stats-cli repository_name last-day
+      $ download-stats-cli repository_name day
+      $ download-stats-cli repository_name last-week
+      $ download-stats-cli '#user_name' w
+      $ download-stats-cli '#user_name' last-month
+      $ download-stats-cli '#user_name' 2014-01-01:2014-01-31
+      $ download-stats-cli '#user_name' w
+      $ download-stats-cli '#user_name' t
 ```
