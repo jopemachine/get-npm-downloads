@@ -1,4 +1,4 @@
-## get-npm-download
+## get-npm-downloads
 
 Display npm download in console (also include lib)
 
@@ -9,7 +9,7 @@ Using worker_threads to boost fetch speed.
 ### Usage
 
 ```js
-const getNpmDownloads = require('get-npm-download');
+const getNpmDownloads = require('get-npm-downloads');
 
 const datas = getNpmDownloads({
   userId,
@@ -22,16 +22,16 @@ const datas = getNpmDownloads({
 
 ```
   Usage
-      $ get-npm-download [repository_name || #user_name] period_option
+      $ get-npm-downloads [repository_name || #user_name] period_option
 
   Examples
-      $ get-npm-download repository_name today
-      $ get-npm-download repository_name last-day
-      $ get-npm-download repository_name day
-      $ get-npm-download repository_name last-week
-      $ get-npm-download '#user_name' w
-      $ get-npm-download '#user_name' last-month
-      $ get-npm-download '#user_name' 2014-01-01:2014-01-31
-      $ get-npm-download '#user_name' w
-      $ get-npm-download '#user_name' t
+      $ get-npm-downloads repository_name today
+      $ get-npm-downloads repository_name last-day
+      $ get-npm-downloads repository_name day
+      $ get-npm-downloads repository_name last-week
+      $ get-npm-downloads '#user_name' w
+      $ get-npm-downloads '#user_name' last-month
+      $ get-npm-downloads '#user_name' 2014-01-01:2014-01-31
+      $ get-npm-downloads '#user_name' w
+      $ get-npm-downloads '#user_name' t
 ```

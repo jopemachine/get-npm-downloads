@@ -1,8 +1,8 @@
 {
-  "name": "get-npm-download",
+  "name": "get-npm-downloads",
   "version": "0.0.1",
   "bin": {
-    "get-npm-download": "./cli.js"
+    "get-npm-downloads": "./cli.js"
   },
   "description": "Display npm download in console (also include lib)",
   "main": "index.js",
@@ -15,14 +15,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jopemachine/get-npm-download.git"
+    "url": "git+https://github.com/jopemachine/get-npm-downloads.git"
   },
   "author": "jopemachine",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jopemachine/get-npm-download/issues"
+    "url": "https://github.com/jopemachine/get-npm-downloads/issues"
   },
-  "homepage": "https://github.com/jopemachine/get-npm-download#readme",
+  "homepage": "https://github.com/jopemachine/get-npm-downloads#readme",
   "dependencies": {
     "axios": "^0.21.1",
     "boxen": "^5.0.1",
