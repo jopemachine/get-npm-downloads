@@ -1,8 +1,8 @@
 {
-  "name": "download-stats-cli",
+  "name": "get-npm-download",
   "version": "0.0.1",
   "bin": {
-    "download-stats-cli": "./cli.js"
+    "get-npm-download": "./cli.js"
   },
   "description": "Display npm download in console (also include lib)",
   "main": "index.js",
@@ -15,14 +15,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jopemachine/download-stats-cli.git"
+    "url": "git+https://github.com/jopemachine/get-npm-download.git"
   },
   "author": "jopemachine",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jopemachine/download-stats-cli/issues"
+    "url": "https://github.com/jopemachine/get-npm-download/issues"
   },
-  "homepage": "https://github.com/jopemachine/download-stats-cli#readme",
+  "homepage": "https://github.com/jopemachine/get-npm-download#readme",
   "dependencies": {
     "axios": "^0.21.1",
     "boxen": "^5.0.1",

@@ -9,18 +9,18 @@ const getNpmDownloads = require('./getNpmDownloads');
 const cli = meow(chalk.white(
   `
     Usage
-        $ download-stats-cli [repository_name || #user_name] period_option
+        $ get-npm-download [repository_name || #user_name] period_option
 
     Examples
-        $ download-stats-cli repository_name today
-        $ download-stats-cli repository_name last-day
-        $ download-stats-cli repository_name day
-        $ download-stats-cli repository_name last-week
-        $ download-stats-cli '#user_name' w
-        $ download-stats-cli '#user_name' last-month
-        $ download-stats-cli '#user_name' 2014-01-01:2014-01-31
-        $ download-stats-cli '#user_name' w
-        $ download-stats-cli '#user_name' t
+        $ get-npm-download repository_name today
+        $ get-npm-download repository_name last-day
+        $ get-npm-download repository_name day
+        $ get-npm-download repository_name last-week
+        $ get-npm-download '#user_name' w
+        $ get-npm-download '#user_name' last-month
+        $ get-npm-download '#user_name' 2014-01-01:2014-01-31
+        $ get-npm-download '#user_name' w
+        $ get-npm-download '#user_name' t
 `,
   {
     flags: {
