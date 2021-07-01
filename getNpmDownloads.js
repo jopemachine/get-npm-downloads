@@ -9,8 +9,8 @@ let npm = new NpmApi();
 const url = (period, repository) =>
   `https://api.npmjs.org/downloads/point/${period}/${repository}`;
 
-module.exports = async ({ userId, period, repo: repoToView }) => {
-  if (!userId && !repoToView) {
+module.exports = async ({ userId, period, repository }) => {
+  if (!userId && !repository) {
     throw new Error('userId or repo must be given');
   }
 
@@ -42,8 +42,8 @@ module.exports = async ({ userId, period, repo: repoToView }) => {
     break;
   }
 
-  if (repoToView) {
-    return (await axios.get(url(period, repoToView))).data;
+  if (repository) {
+    return (await axios.get(url(period, repository))).data;
   }
 
   const maintainer = npm.maintainer(userId);

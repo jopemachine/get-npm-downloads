@@ -42,21 +42,21 @@ Downloads: ${chalk.magentaBright(item.downloads)}`);
 };
 
 (async function () {
-  let userId, repo;
+  let userId, repository;
   if (cli.input[0].startsWith('#')) {
     userId = cli.input[0].split('#')[1];
   } else {
-    repo = cli.input[0];
+    repository = cli.input[0];
   }
 
   const spinner = ora({
     color: 'green',
     discardStdin: true
-  }).start(chalk.whiteBright(`Fetching info.. this could take a few minutes if there lots if repos..`));
+  }).start(chalk.whiteBright(`Fetching info.. This could take a few minutes if there are lots of repositorys..`));
 
   const data = await getNpmDownloads({
     userId,
-    repo,
+    repository,
     period: cli.input[1],
   });
 

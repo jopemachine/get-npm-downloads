@@ -5,7 +5,7 @@ interface NPMDownloadInfo {
   package: string;
 }
 
-export default async function ({
+export default function ({
   userId,
   period,
   repo,
@@ -13,4 +13,4 @@ export default async function ({
   period: string;
   userId?: string;
   repo?: string;
-}): NPMDownloadInfo[];
+}): Promise<NPMDownloadInfo[]>;
