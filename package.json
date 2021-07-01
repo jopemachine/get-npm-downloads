@@ -1,13 +1,13 @@
 {
   "name": "get-npm-downloads",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "bin": {
     "get-npm-downloads": "./cli.js"
   },
   "description": "Display npm download in console (also include lib)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "files": [
     "index.d.ts",
@@ -38,6 +38,7 @@
     "cli"
   ],
   "devDependencies": {
-    "eslint": "^7.22.0"
+    "eslint": "^7.22.0",
+    "jest": "^27.0.6"
   }
 }

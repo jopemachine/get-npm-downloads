@@ -13,4 +13,4 @@ export default function ({
   period: string;
   userId?: string;
   repository?: string;
-}): Promise<NPMDownloadInfo[]>;
+}): Promise<NPMDownloadInfo | NPMDownloadInfo[]>;
