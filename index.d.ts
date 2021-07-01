@@ -8,9 +8,9 @@ interface NPMDownloadInfo {
 export default function ({
   userId,
   period,
-  repo,
+  repository,
 }: {
   period: string;
   userId?: string;
-  repo?: string;
+  repository?: string;
 }): Promise<NPMDownloadInfo[]>;
