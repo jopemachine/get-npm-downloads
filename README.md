@@ -1,12 +1,21 @@
-## get-npm-downloads [![BuildStatus](https://api.travis-ci.com/jopemachine/get-npm-downloads.svg)](https://www.npmjs.com/package/get-npm-downloads)
+# get-npm-downloads [![BuildStatus](https://api.travis-ci.com/jopemachine/get-npm-downloads.svg)](https://www.npmjs.com/package/get-npm-downloads)
 
 Display npm download in console (also include lib)
 
-Using worker_threads to boost fetch speed.
+## 429 Error
+
+This lib iterate and send request to all repository of 'userId'.
+
+So, too many request cause errors.
+
+And I made a limit to this (200).
+
+Set `force` option to true if you would like to ignore this limit
+
 
 ![](./demo.png)
 
-### Usage
+## Usage
 
 ```js
 const getNpmDownloads = require('get-npm-downloads');
@@ -18,7 +27,7 @@ const datas = getNpmDownloads({
 });
 ```
 
-### Usage-cli
+## Usage-cli
 
 ```
   Usage

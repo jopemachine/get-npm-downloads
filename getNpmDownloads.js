@@ -9,37 +9,37 @@ let npm = new NpmApi();
 const url = (period, repository) =>
   `https://api.npmjs.org/downloads/point/${period}/${repository}`;
 
-module.exports = async ({ userId, period, repository }) => {
+module.exports = async ({ userId, period, repository, flags = { force: false }}) => {
   if (!userId && !repository) {
     throw new Error('userId or repo must be given');
   }
 
   switch (period) {
-  case 'last-day':
-  case 'last-week':
-  case 'last-month':
-    break;
+    case 'last-day':
+    case 'last-week':
+    case 'last-month':
+      break;
 
-  case 't':
-  case 'total':
-    // from npm's initial release date to today
-    period = `2010-01-12:${getToday()}`;
-    break;
+    case 't':
+    case 'total':
+      // from npm's initial release date to today
+      period = `2010-01-12:${getToday()}`;
+      break;
 
-  case 'm':
-  case 'month':
-    period = 'last-month';
-    break;
-  case 'w':
-  case 'week':
-    period = 'last-week';
-    break;
+    case 'm':
+    case 'month':
+      period = 'last-month';
+      break;
+    case 'w':
+    case 'week':
+      period = 'last-week';
+      break;
 
-  case 'd':
-  case 'day':
-  case 'today':
-    period = 'last-day';
-    break;
+    case 'd':
+    case 'day':
+    case 'today':
+      period = 'last-day';
+      break;
   }
 
   if (repository) {
@@ -50,6 +50,10 @@ module.exports = async ({ userId, period, repository }) => {
   const repos = await maintainer.repos();
   const result = [];
   const workers = new Set();
+
+  if (!flags.force && repos.length > 200) {
+    throw new Error(`Too many repository exist. (${repos.length}). to ignore this error, set force to true.`);
+  }
 
   for (const repo of repos) {
     const worker = new Worker(path.join(`${__dirname}`, 'downloadWork.js'));

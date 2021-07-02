@@ -29,6 +29,11 @@ const cli = meow(chalk.white(
         alias: 'd',
         isRequired: () => false
       },
+      force: {
+        type: 'boolean',
+        alias: 'f',
+        isRequired: () => false
+      }
     }
   }
 ));
@@ -58,6 +63,7 @@ Downloads: ${chalk.magentaBright(item.downloads)}`);
     userId,
     repository,
     period: cli.input[1],
+    flags: cli.flags,
   });
 
   spinner.succeed('Works done!');
