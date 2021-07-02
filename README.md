@@ -2,17 +2,6 @@
 
 Display npm download in console (also include lib)
 
-## 429 Error
-
-This lib iterate and send request to all repository of 'userId'.
-
-So, too many request cause errors.
-
-And I made a limit to this (200).
-
-Set `force` option to true if you would like to ignore this limit
-
-
 ![](./demo.png)
 
 ## Usage

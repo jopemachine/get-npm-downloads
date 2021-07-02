@@ -1,15 +1,14 @@
 const NpmApi = require('npm-api');
 const axios = require('axios');
 const { getToday } = require('./utils');
-const { Worker } = require('worker_threads');
-const path = require('path');
+const chalk = require('chalk');
 
 let npm = new NpmApi();
 
 const url = (period, repository) =>
   `https://api.npmjs.org/downloads/point/${period}/${repository}`;
 
-module.exports = async ({ userId, period, repository, flags = { force: false }}) => {
+module.exports = async ({ userId, period, repository, flags = { force: false } }) => {
   if (!userId && !repository) {
     throw new Error('userId or repo must be given');
   }
@@ -48,40 +47,18 @@ module.exports = async ({ userId, period, repository, flags = { force: false }})
 
   const maintainer = npm.maintainer(userId);
   const repos = await maintainer.repos();
-  const result = [];
-  const workers = new Set();
 
-  if (!flags.force && repos.length > 200) {
-    throw new Error(`Too many repository exist. (${repos.length}). to ignore this error, set force to true.`);
+  const promises = [];
+
+  if (!flags.force && repos.length > 300) {
+    throw new Error(chalk.red(`Too many repository exist. (count: ${repos.length}). to ignore this error, set force to true.`));
   }
 
   for (const repo of repos) {
-    const worker = new Worker(path.join(`${__dirname}`, 'downloadWork.js'));
-    workers.add(worker);
-    worker.postMessage({
-      url: url(period, repo)
-    });
-
-    worker.on('message', ({ data, errorMsg }) => {
-      if (data) {
-        result.push(data);
-      } else if (errorMsg) {
-        throw new Error(errorMsg);
-      }
-      workers.delete(worker);
-    });
+    promises.push(axios.get(url(period, repo)));
   }
 
-  // eslint-disable-next-line no-constant-condition
-  while (true) {
-    if (workers.size === 0) {
-      return result;
-    }
-    // yield Execution Order to other workers
-    await sleep(1);
-  }
+  const datas = (await Promise.allSettled(promises)).filter(item => item.status === 'fulfilled').map(item => item.value.data);
+
+  return datas;
 };
-
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
