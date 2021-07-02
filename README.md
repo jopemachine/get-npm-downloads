@@ -1,4 +1,4 @@
-## get-npm-downloads
+## get-npm-downloads [![BuildStatus](https://api.travis-ci.com/jopemachine/get-npm-downloads.svg)](https://www.npmjs.com/package/get-npm-downloads)
 
 Display npm download in console (also include lib)
 
