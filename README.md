@@ -1,4 +1,9 @@
-# get-npm-downloads [![BuildStatus](https://api.travis-ci.com/jopemachine/get-npm-downloads.svg)](https://www.npmjs.com/package/get-npm-downloads)
+# get-npm-downloads 
+
+[![BuildStatus](https://api.travis-ci.com/jopemachine/get-npm-downloads.svg)](https://www.npmjs.com/package/get-npm-downloads)
+[![NPM download total](https://img.shields.io/npm/dt/get-npm-downloads)](http://badge.fury.io/js/get-npm-downloads)
+[![NPM version](https://badge.fury.io/js/get-npm-downloads.svg)](http://badge.fury.io/js/get-npm-downloads)
+[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 
 Display npm download in console (also include lib)
 
