@@ -7,62 +7,59 @@ const boxen = require("boxen");
 const terminalLink = require("terminal-link");
 const getNpmDownloads = require("./getNpmDownloads");
 
-const cli = meow(
-  chalk.whiteBright(
-    `
-    Usage
-        $ get-npm-downloads [repository_name || #user_name] period --options
+const helpStr = chalk.whiteBright(`Usage
+    $ get-npm-downloads [repository_name || #user_name] period --options
 
-    Options
+  Options
 
-      force
+    force
 
-      debug
+    debug
 
-      name
+    name
 
-    Examples
-        $ get-npm-downloads repository_name today
-        $ get-npm-downloads repository_name last-day
-        $ get-npm-downloads repository_name day
-        $ get-npm-downloads repository_name last-week
-        $ get-npm-downloads '#user_name' w
-        $ get-npm-downloads '#user_name' last-month
-        $ get-npm-downloads '#user_name' 2014-01-01:2014-01-31
-        $ get-npm-downloads '#user_name' w
-        $ get-npm-downloads '#user_name' t
-        $ get-npm-downloads '#user_name' t --name=repository_name
-`,
-    {
-      flags: {
-        force: {
-          type: "boolean",
-          alias: "f",
-          isRequired: () => false,
-        },
-        debug: {
-          type: "boolean",
-          alias: "f",
-          default: false,
-          isRequired: () => false,
-        },
-        name: {
-          type: "string",
-          alias: "n",
-          default: "",
-          isRequired: () => false,
-        },
-      },
-    }
-  )
-);
+  Examples
+      $ get-npm-downloads repository_name today
+      $ get-npm-downloads repository_name last-day
+      $ get-npm-downloads repository_name day
+      $ get-npm-downloads repository_name last-week
+      $ get-npm-downloads '#user_name' w
+      $ get-npm-downloads '#user_name' last-month
+      $ get-npm-downloads '#user_name' 2014-01-01:2014-01-31
+      $ get-npm-downloads '#user_name' w
+      $ get-npm-downloads '#user_name' t
+      $ get-npm-downloads '#user_name' t --name=repository_name
+`);
+
+const cli = meow(helpStr, {
+  flags: {
+    force: {
+      type: "boolean",
+      alias: "f",
+      isRequired: () => false,
+    },
+    debug: {
+      type: "boolean",
+      alias: "f",
+      default: false,
+      isRequired: () => false,
+    },
+    name: {
+      type: "string",
+      alias: "n",
+      default: "",
+      isRequired: () => false,
+    },
+  },
+});
 
 const transform = (item) => {
-  const packageName = terminalLink.isSupported ? terminalLink(
-    chalk.cyanBright(item.package),
-    `https://www.npmjs.com/package/${item.package}`
-  ) :
-  `${chalk.cyanBright(item.package)}
+  const packageName = terminalLink.isSupported
+    ? terminalLink(
+        chalk.cyanBright(item.package),
+        `https://www.npmjs.com/package/${item.package}`
+      )
+    : `${chalk.cyanBright(item.package)}
 https://www.npmjs.com/package/${item.package}`;
 
   const itemLine = chalk.whiteBright(`${packageName}
@@ -76,6 +73,12 @@ Downloads: ${chalk.magentaBright(item.downloads)}`);
 
 (async function () {
   let userId, repository;
+
+  if (!cli.input[0]) {
+    cli.showHelp();
+    return;
+  }
+
   if (cli.input[0].startsWith("#")) {
     userId = cli.input[0].split("#")[1];
   } else {
