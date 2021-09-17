@@ -1,6 +1,6 @@
 {
   "name": "get-npm-downloads",
-  "version": "0.0.5",
+  "version": "0.0.10",
   "bin": {
     "get-npm-downloads": "./cli.js"
   },

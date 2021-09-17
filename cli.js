@@ -6,10 +6,18 @@ const ora = require('ora');
 const boxen = require('boxen');
 const getNpmDownloads = require('./getNpmDownloads');
 
-const cli = meow(chalk.white(
+const cli = meow(chalk.whiteBright(
   `
     Usage
         $ get-npm-downloads [repository_name || #user_name] period_option
+
+    Options
+
+      force
+
+      debug
+
+      name
 
     Examples
         $ get-npm-downloads repository_name today
@@ -21,17 +29,25 @@ const cli = meow(chalk.white(
         $ get-npm-downloads '#user_name' 2014-01-01:2014-01-31
         $ get-npm-downloads '#user_name' w
         $ get-npm-downloads '#user_name' t
+        $ get-npm-downloads '#user_name' t --name=repository_name
 `,
   {
     flags: {
-      date: {
-        type: 'string',
-        alias: 'd',
-        isRequired: () => false
-      },
       force: {
         type: 'boolean',
         alias: 'f',
+        isRequired: () => false
+      },
+      debug: {
+        type: 'boolean',
+        alias: 'f',
+        default: false,
+        isRequired: () => false
+      },
+      name: {
+        type: 'string',
+        alias: 'n',
+        default: '',
         isRequired: () => false
       }
     }
