@@ -1,9 +1,10 @@
 const NpmApi = require("npm-api");
 const axios = require("axios");
-const { getToday } = require("./utils");
 const chalk = require("chalk");
+const logSymbols = require("log-symbols");
+const { getToday } = require("./utils");
 
-let npm = new NpmApi();
+const npm = new NpmApi();
 
 const url = (period, repository) =>
   `https://api.npmjs.org/downloads/point/${period}/${repository}`;
@@ -15,7 +16,7 @@ module.exports = async ({
   flags = { force: false, debug: false, name: "" },
 }) => {
   if (!userId && !repository) {
-    throw new Error("userId or repo must be given");
+    throw new Error(`${logSymbols.error} userId or repo must be given`);
   }
 
   switch (period) {
@@ -60,8 +61,8 @@ module.exports = async ({
 
   if (!flags.force && repos.length > 300) {
     throw new Error(
-      chalk.red(
-        `Too many repository exist. (count: ${repos.length}). to ignore this error, set force to true.`
+      chalk.whiteBright(
+        `${logSymbols.error} Too many repository exist. (count: ${repos.length}). to ignore this error, set force to true.`
       )
     );
   }
