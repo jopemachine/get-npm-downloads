@@ -1,8 +1,15 @@
-interface NPMDownloadInfo {
+export interface NPMDownloadInfo {
 	downloads: number;
 	start: string;
 	end: string;
 	package: string;
+}
+
+export enum PeriodEnum {
+	LAST_DAY = 'last-day',
+	LAST_WEEK = 'last-week',
+	LAST_MONTH = 'last-month',
+	TOTAL = 'total',
 }
 
 export default function ({
@@ -10,7 +17,7 @@ export default function ({
 	period,
 	repository
 }: {
-	period: 'last-day' | 'last-week' | 'last-month' | 'last-day' | 'total' | string;
+	period: PeriodEnum | string;
 	userId?: string;
 	repository?: string;
 }): Promise<NPMDownloadInfo | NPMDownloadInfo[]>;

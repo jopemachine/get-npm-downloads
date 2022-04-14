@@ -12,7 +12,7 @@ const url = (period, repository) =>
 const getNpmDownloads = async ({
 	userId,
 	repository,
-	period = 't',
+	period = 'total',
 	flags = {force: false, debug: false, name: ''}
 }) => {
 	if (!userId && !repository) {
