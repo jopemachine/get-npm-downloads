@@ -10,7 +10,7 @@ export default function ({
 	period,
 	repository
 }: {
-	period: 'last-day' | 'last-week' | 'last-month' | 'last-day' | 'total';
+	period: 'last-day' | 'last-week' | 'last-month' | 'last-day' | 'total' | string;
 	userId?: string;
 	repository?: string;
 }): Promise<NPMDownloadInfo | NPMDownloadInfo[]>;
