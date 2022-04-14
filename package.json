@@ -1,6 +1,6 @@
 {
   "name": "get-npm-downloads",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "bin": {
     "get-npm-downloads": "./cli.js"
   },
@@ -41,6 +41,7 @@
   ],
   "devDependencies": {
     "eslint": "^7.22.0",
-    "jest": "^27.0.6"
+    "jest": "^27.0.6",
+    "xo": "^0.39.1"
   }
 }

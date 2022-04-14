@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
-const meow = require("meow");
-const chalk = require("chalk");
-const ora = require("ora");
-const boxen = require("boxen");
-const terminalLink = require("terminal-link");
-const getNpmDownloads = require("./getNpmDownloads");
+const meow = require('meow');
+const chalk = require('chalk');
+const ora = require('ora');
+const boxen = require('boxen');
+const terminalLink = require('terminal-link');
+const getNpmDownloads = require('./getNpmDownloads');
 
-const helpStr = chalk.whiteBright(`Usage
+const helpString = chalk.whiteBright(`Usage
     $ get-npm-downloads [repository_name || #user_name] period --options
 
   Options
@@ -31,81 +31,81 @@ const helpStr = chalk.whiteBright(`Usage
       $ get-npm-downloads '#user_name' t --name=repository_name
 `);
 
-const cli = meow(helpStr, {
-  flags: {
-    force: {
-      type: "boolean",
-      alias: "f",
-      isRequired: () => false,
-    },
-    debug: {
-      type: "boolean",
-      alias: "f",
-      default: false,
-      isRequired: () => false,
-    },
-    name: {
-      type: "string",
-      alias: "n",
-      default: "",
-      isRequired: () => false,
-    },
-  },
+const cli = meow(helpString, {
+	flags: {
+		force: {
+			type: 'boolean',
+			alias: 'f',
+			isRequired: () => false
+		},
+		debug: {
+			type: 'boolean',
+			alias: 'f',
+			default: false,
+			isRequired: () => false
+		},
+		name: {
+			type: 'string',
+			alias: 'n',
+			default: '',
+			isRequired: () => false
+		}
+	}
 });
 
-const transform = (item) => {
-  const packageName = terminalLink.isSupported
-    ? terminalLink(
-        chalk.cyanBright(item.package),
-        `https://www.npmjs.com/package/${item.package}`
-      )
-    : `${chalk.cyanBright(item.package)}
+const transform = item => {
+	const packageName = terminalLink.isSupported ?
+		terminalLink(
+			chalk.cyanBright(item.package),
+			`https://www.npmjs.com/package/${item.package}`
+		) :
+		`${chalk.cyanBright(item.package)}
 https://www.npmjs.com/package/${item.package}`;
 
-  const itemLine = chalk.whiteBright(`${packageName}
-Period: ${chalk.greenBright(item.start + " ~ " + item.end)}
+	const itemLine = chalk.whiteBright(`${packageName}
+Period: ${chalk.greenBright(item.start + ' ~ ' + item.end)}
 Downloads: ${chalk.magentaBright(item.downloads)}`);
 
-  return chalk.whiteBright(
-    boxen(itemLine, { padding: 1, margin: 1, borderStyle: "double" })
-  );
+	return chalk.whiteBright(
+		boxen(itemLine, {padding: 1, margin: 1, borderStyle: 'double'})
+	);
 };
 
 (async function () {
-  let userId, repository;
+	let userId; let repository;
 
-  if (!cli.input[0]) {
-    cli.showHelp();
-    return;
-  }
+	if (!cli.input[0]) {
+		cli.showHelp();
+		return;
+	}
 
-  if (cli.input[0].startsWith("#")) {
-    userId = cli.input[0].split("#")[1];
-  } else {
-    repository = cli.input[0];
-  }
+	if (cli.input[0].startsWith('#')) {
+		userId = cli.input[0].split('#')[1];
+	} else {
+		repository = cli.input[0];
+	}
 
-  const spinner = ora({
-    color: "green",
-    discardStdin: true,
-  }).start(
-    chalk.whiteBright(
-      `Fetching info.. This could take a few minutes if there are lots of repositorys..`
-    )
-  );
+	const spinner = ora({
+		color: 'green',
+		discardStdin: true
+	}).start(
+		chalk.whiteBright(
+			'Fetching info.. This could take a few minutes if there are lots of repositorys..'
+		)
+	);
 
-  const data = await getNpmDownloads({
-    userId,
-    repository,
-    period: cli.input[1],
-    flags: cli.flags,
-  });
+	const data = await getNpmDownloads({
+		userId,
+		repository,
+		period: cli.input[1],
+		flags: cli.flags
+	});
 
-  spinner.succeed(`Works done!`);
+	spinner.succeed('Works done!');
 
-  data.sort((a, b) => {
-    return a.downloads > b.downloads ? -1 : a.downloads < b.downloads ? 1 : 0;
-  });
+	data.sort((a, b) => {
+		return a.downloads > b.downloads ? -1 : (a.downloads < b.downloads ? 1 : 0);
+	});
 
-  console.log(data.map(transform).join("\n"));
+	console.log(data.map(transform).join('\n'));
 })();

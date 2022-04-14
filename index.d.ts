@@ -1,16 +1,16 @@
 interface NPMDownloadInfo {
-  downloads: number;
-  start: string;
-  end: string;
-  package: string;
+	downloads: number;
+	start: string;
+	end: string;
+	package: string;
 }
 
 export default function ({
-  userId,
-  period,
-  repository,
+	userId,
+	period,
+	repository
 }: {
-  period: string;
-  userId?: string;
-  repository?: string;
+	period: 'last-day' | 'last-week' | 'last-month' | 'last-day' | 'total';
+	userId?: string;
+	repository?: string;
 }): Promise<NPMDownloadInfo | NPMDownloadInfo[]>;
