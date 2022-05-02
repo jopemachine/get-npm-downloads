@@ -2,7 +2,7 @@ const NpmApi = require('npm-api');
 const axios = require('axios');
 const chalk = require('chalk');
 const logSymbols = require('log-symbols');
-const {getToday} = require('./utils');
+const {getToday} = require('./utils.js');
 
 const npm = new NpmApi();
 
@@ -45,6 +45,8 @@ const getNpmDownloads = async ({
 		case 'today':
 			period = 'last-day';
 			break;
+		default:
+			throw new Error('period\'s default value not working!');
 	}
 
 	if (repository) {

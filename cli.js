@@ -5,7 +5,7 @@ const chalk = require('chalk');
 const ora = require('ora');
 const boxen = require('boxen');
 const terminalLink = require('terminal-link');
-const getNpmDownloads = require('./getNpmDownloads');
+const getNpmDownloads = require('./getNpmDownloads.js');
 
 const helpString = chalk.whiteBright(`Usage
     $ get-npm-downloads [repository_name || #user_name] period --options
@@ -72,7 +72,8 @@ Downloads: ${chalk.magentaBright(item.downloads)}`);
 };
 
 (async function () {
-	let userId; let repository;
+	let userId;
+	let repository;
 
 	if (!cli.input[0]) {
 		cli.showHelp();
@@ -107,5 +108,5 @@ Downloads: ${chalk.magentaBright(item.downloads)}`);
 		return a.downloads > b.downloads ? -1 : (a.downloads < b.downloads ? 1 : 0);
 	});
 
-	console.log(data.map(transform).join('\n'));
+	console.log(data.map(item => transform(item)).join('\n'));
 })();

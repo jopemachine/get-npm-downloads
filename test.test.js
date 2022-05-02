@@ -1,5 +1,5 @@
-const getNpmDownloads = require('./getNpmDownloads');
-
+/* eslint-disable no-undef */
+const getNpmDownloads = require('./getNpmDownloads.js');
 jest.setTimeout(30000);
 
 describe('argUtility test', () => {

@@ -1,3 +1,5 @@
+import {LiteralUnion} from 'type-fest';
+
 export interface NPMDownloadInfo {
 	downloads: number;
 	start: string;
@@ -5,19 +7,18 @@ export interface NPMDownloadInfo {
 	package: string;
 }
 
-export enum PeriodEnum {
-	LAST_DAY = 'last-day',
-	LAST_WEEK = 'last-week',
-	LAST_MONTH = 'last-month',
-	TOTAL = 'total',
-}
+declare type Period =
+	| 'last-day'
+	| 'last-week'
+	| 'last-month'
+	| 'total';
 
 export default function ({
 	userId,
 	period,
 	repository
 }: {
-	period: PeriodEnum | string;
+	period: LiteralUnion<Period, string>;
 	userId?: string;
 	repository?: string;
 }): Promise<NPMDownloadInfo | NPMDownloadInfo[]>;

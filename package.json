@@ -1,13 +1,13 @@
 {
   "name": "get-npm-downloads",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "bin": {
     "get-npm-downloads": "./cli.js"
   },
   "description": "Display npm download in console (also include lib)",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest && tsd"
   },
   "files": [
     "index.d.ts",
@@ -31,7 +31,8 @@
     "meow": "^9.0.0",
     "npm-api": "^1.0.1",
     "ora": "^5.4.1",
-    "terminal-link": "^2.1.1"
+    "terminal-link": "^2.1.1",
+    "type-fest": "^2.12.2"
   },
   "keywords": [
     "npm",
@@ -42,6 +43,7 @@
   "devDependencies": {
     "eslint": "^7.22.0",
     "jest": "^27.0.6",
+    "tsd": "^0.20.0",
     "xo": "^0.39.1"
   }
 }
