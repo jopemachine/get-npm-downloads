@@ -5,7 +5,7 @@ const chalk = require('chalk');
 const ora = require('ora');
 const boxen = require('boxen');
 const terminalLink = require('terminal-link');
-const getNpmDownloads = require('./getNpmDownloads.js');
+const getNpmDownloads = require('./get-npm-downloads.js');
 
 const helpString = chalk.whiteBright(`Usage
     $ get-npm-downloads [repository_name || #user_name] period --options

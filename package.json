@@ -7,7 +7,7 @@
   "description": "Display npm download in console (also include lib)",
   "main": "index.js",
   "scripts": {
-    "test": "jest && tsd"
+    "test": "jest"
   },
   "files": [
     "index.d.ts",
@@ -43,7 +43,6 @@
   "devDependencies": {
     "eslint": "^7.22.0",
     "jest": "^27.0.6",
-    "tsd": "^0.20.0",
     "xo": "^0.39.1"
   }
 }

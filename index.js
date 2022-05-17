@@ -1,1 +1,1 @@
-module.exports = require('./getNpmDownloads.js');
+module.exports = require('./get-npm-downloads.js');
